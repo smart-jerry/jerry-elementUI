@@ -3,36 +3,43 @@
     <section>
         <h1>同学录</h1>
 
-        <el-row :span="22" :offset="1">
+        <el-row :offset="1">
             <el-col id="main">
-                <label>姓名：</label>
-                <el-input v-model="user.name" placeholder="请输入姓名"></el-input>
-                <br>
-                <label>性别：</label>
-                <el-select v-model="user.sex" placeholder="请选择">
-                    <el-option v-for="item in options" :key="item" :value="item"></el-option>
-                </el-select>
-                <br>
-                <label>电话号码：</label>
-                <el-input v-model="user.phone" placeholder="请输入电话号码"></el-input>
-                <br>
-                <label>出生日期：</label>
-                <el-date-picker v-model="user.birth" format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd" align="right"
-                                type="date"
-                                placeholder="选择日期">
-                </el-date-picker>
+                <div class="groupForm">
+                    <label>姓名：</label>
+                    <el-input v-model="user.name" placeholder="请输入姓名"></el-input>
+                </div>
 
+                <div class="groupForm">
+                    <label>性别：</label>
+                    <el-select v-model="user.sex" placeholder="请选择">
+                        <el-option v-for="item in options" :key="item" :value="item"></el-option>
+                    </el-select>
+                </div>
+
+                <div class="groupForm">
+                    <label>电话号码：</label>
+                    <el-input v-model="user.phone" placeholder="请输入电话号码"></el-input>
+                </div>
+
+                <div class="groupForm">
+                    <label>出生日期：</label>
+                    <el-date-picker v-model="user.birth" format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd"
+                                    align="right"
+                                    type="date"
+                                    placeholder="选择日期">
+                    </el-date-picker>
+                </div>
             </el-col>
         </el-row>
 
 
-        <el-col :span="22" class="toolbar" style="padding-bottom: 0; text-align: left">
+        <el-col class="toolbar">
             <el-form :inline="true">
                 <el-form-item>
                     <el-input placeholder="请输入姓名"></el-input>
                 </el-form-item>
                 <el-form-item>
-
                     <el-button type="primary" icon="el-icon-search" @click="getUsers">查询</el-button>
                 </el-form-item>
                 <el-form-item>
@@ -43,9 +50,7 @@
 
         <el-table :data="tableData" align="left">
             <el-table-column prop="name" label="姓名"></el-table-column>
-            <el-table-column prop="sex" label="性别"></el-table-column>
             <el-table-column prop="phone" label="电话号码："></el-table-column>
-            <el-table-column prop="birth" label="出生日期："></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button type="primary" icon="el-icon-edit" circle @click="editUser"></el-button>
@@ -160,20 +165,29 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" itemscope="">
     #main {
         float: none;
         margin: 0 auto;
     }
 
-    .el-input {
-        /* padding-bottom: 5px; */
-        width: 40%;
+    .groupForm{
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
+        margin-bottom: 10px;
+    }
+    .groupForm label {
+        min-width: 100px;
+        overflow: hidden;
+        display: inline-block;
     }
 
-    .btn-auto {
-        width: 100%;
-        margin-top: 12px;
+    .toolbar form {
+        margin-top: 30px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: baseline;
     }
 
 </style>
