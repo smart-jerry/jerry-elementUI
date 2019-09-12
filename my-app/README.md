@@ -16,7 +16,7 @@ vue create jerry-elementUI
 3,引入elementUI
 
 ```
-npm i element-ui -S
+vue add element
 ```
 
 
