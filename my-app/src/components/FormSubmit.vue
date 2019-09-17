@@ -151,6 +151,9 @@
             delUser(index) {
                 this.tableData.splice(index, 1)
             },
+            getUsers(s){
+
+            },
             handleClose() {
                 this.dialogVisible = false
             },
