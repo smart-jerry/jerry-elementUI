@@ -30,6 +30,9 @@
                                     placeholder="选择日期">
                     </el-date-picker>
                 </div>
+                <div>
+                    <el-button type="primary" @click="create">新增</el-button>
+                </div>
             </el-col>
         </el-row>
 
@@ -41,9 +44,6 @@
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" icon="el-icon-search" @click="getUsers">查询</el-button>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="create">新增</el-button>
                 </el-form-item>
             </el-form>
         </el-col>
@@ -151,7 +151,7 @@
             delUser(index) {
                 this.tableData.splice(index, 1)
             },
-            getUsers(s){
+            getUsers(){
 
             },
             handleClose() {
@@ -169,6 +169,11 @@
 </script>
 
 <style lang="scss" itemscope="">
+    section{
+        background: #FFffff;
+        padding: 30px 10px;
+        margin: 30px auto;
+    }
     #main {
         float: none;
         margin: 0 auto;
@@ -181,12 +186,19 @@
         margin-bottom: 10px;
     }
     .groupForm label {
-        min-width: 100px;
+        min-width: 80px;
         overflow: hidden;
         display: inline-block;
+        text-align: right;
+    }
+    .groupForm button{
+        align-self: center;
     }
 
+
     .toolbar form {
+        border-top:1px solid #f2f2f2;
+        padding-top: 30px;
         margin-top: 30px;
         display: flex;
         justify-content: flex-start;
