@@ -40,7 +40,7 @@
         <el-col class="toolbar">
             <el-form :inline="true">
                 <el-form-item>
-                    <el-input placeholder="请输入姓名"></el-input>
+                    <el-input placeholder="请输入姓名" v-model="selectName"></el-input>
                 </el-form-item>
                 <el-form-item>
                     <el-button type="primary" icon="el-icon-search" @click="getUsers">查询</el-button>
@@ -48,7 +48,7 @@
             </el-form>
         </el-col>
 
-        <el-table :data="tableData" align="left">
+        <el-table align="left" :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))">
             <el-table-column prop="name" label="姓名"></el-table-column>
             <el-table-column prop="phone" label="电话号码："></el-table-column>
             <el-table-column label="操作">
@@ -73,6 +73,8 @@
             return {
                 dialogVisible : false,
                 currentIndex     : 0,
+                search:'',
+                selectName:'',
                 user          : {
                     name  : '',
                     sex   : '',
@@ -157,8 +159,8 @@
             delUser(index) {
                 this.tableData.splice(index, 1)
             },
-            getUsers(){
-
+            getUsers(){alert(this.selectName);
+                this.search = this.selectName;
             },
             handleClose() {
                 this.dialogVisible = false
