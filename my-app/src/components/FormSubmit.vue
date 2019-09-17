@@ -31,7 +31,7 @@
                     </el-date-picker>
                 </div>
                 <div>
-                    <el-button type="primary" @click="create">新增</el-button>
+                    <el-button type="primary" @click="submitForm()">新增</el-button>
                 </div>
             </el-col>
         </el-row>
@@ -55,7 +55,7 @@
                 <template slot-scope="scope">
                     <el-button type="primary" icon="el-icon-edit" circle @click="editUser"></el-button>
                     <el-button type="danger" icon="el-icon-delete" circle
-                               @click="delUser(scope.$index,scope.row)"></el-button>
+                               @click="delUser(scope.$index)"></el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -72,7 +72,7 @@
         data(){
             return {
                 dialogVisible : false,
-                userIndex     : 0,
+                currentIndex     : 0,
                 user          : {
                     name  : '',
                     sex   : '',
@@ -82,12 +82,14 @@
                 },
                 tableData     : [
                     {
+                        id    : 1,
                         name  : '风月',
                         sex   : '女',
                         phone : '12223',
                         birth : '2019-10-12'
                     },
                     {
+                        id    : 2,
                         name  : '风月1',
                         sex   : '女',
                         phone : '12223',
@@ -107,8 +109,11 @@
             }
 
         },
+        created: function () {
+            this.currentIndex = this.tableData.length;
+        },
         methods : {
-            create(){
+            submitForm(){
                 if (!this.user.name) {
                     this.$message({
                         message : '请输入姓名',
@@ -137,6 +142,7 @@
                     })
                     return
                 }
+                this.user.id = this.currentIndex++;
                 this.tableData.push(this.user)
                 this.user = {
                     name  : '',
