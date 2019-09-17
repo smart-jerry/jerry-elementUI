@@ -159,7 +159,7 @@
             delUser(index) {
                 this.tableData.splice(index, 1)
             },
-            getUsers(){alert(this.selectName);
+            getUsers(){
                 this.search = this.selectName;
             },
             handleClose() {
